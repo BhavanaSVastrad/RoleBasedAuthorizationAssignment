@@ -1,0 +1,131 @@
+﻿@model RoleBasedAuthorizationAssignment.Models.Cart
+@{
+    ViewData["Title"] = "UserProductDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<form method="post">
+    <input hidden asp-for="ProductId" />
+    <div class="container mt-5 mb-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10">
+                <div class="card" style="margin-left:50px;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="images p-3">
+                                <div class="text-center p-4"> <img id="main-image" src="@Model.Product.Product_Image" width="250" /> </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="product p-4">
+
+                                <div class="mt-4 mb-3">
+                                    <h6>Name:</h6>
+                                    <p class="text-uppercase" style="color:purple;font-weight:bolder;">@Model.Product.Product_Name</p>
+                                    <h6>Price:</h6>
+                                    <div class="price d-flex flex-row align-items-center">
+                                        <p class="act-price" style="color:purple;font-weight:bolder;">₹@Model.Product.Product_Price</p>
+                                    </div>
+                                </div>
+                                <h6>Description:</h6>
+                                <p class="about" style="color:purple;font-weight:bold;">@Model.Product.Product_Description</p>
+
+                                <h4>Count</h4>
+                                <input asp-for="Count" class="form-control" />
+
+                                <button type="submit" value="Add to Cart" asp-controller="Products" asp-action="UserProductDetails" asp-route-id="@Model.Product.Id" class="btn btn-danger">Add to Cart</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+<style>
+
+
+    .card {
+        /*  border: none;*/
+
+        border-radius: 40px solid black;
+        background-color: papayawhip;
+        width: 800px;
+    }
+
+    .product {
+        background-color: antiquewhite;
+        height: 400px;
+    }
+
+    .brand {
+        font-size: 13px
+    }
+
+    .act-price {
+        color: red;
+        font-weight: 700
+    }
+
+    .dis-price {
+        text-decoration: line-through
+    }
+
+    .about {
+        font-size: 14px
+    }
+
+    .color {
+        margin-bottom: 10px
+    }
+
+    label.radio {
+        cursor: pointer
+    }
+
+        label.radio input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+            pointer-events: none
+        }
+
+        label.radio span {
+            padding: 2px 9px;
+            border: 2px solid #ff0000;
+            display: inline-block;
+            color: #ff0000;
+            border-radius: 3px;
+            text-transform: uppercase
+        }
+
+        label.radio input:checked + span {
+            border-color: #ff0000;
+            background-color: #ff0000;
+            color: #fff
+        }
+
+    .btn-danger {
+        background-color: #ff0000 !important;
+        border-color: #ff0000 !important
+    }
+
+        .btn-danger:hover {
+            background-color: #da0606 !important;
+            border-color: #da0606 !important
+        }
+
+        .btn-danger:focus {
+            box-shadow: none
+        }
+
+    .cart i {
+        margin-right: 10px
+    }
+</style>

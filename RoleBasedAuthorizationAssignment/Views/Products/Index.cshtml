@@ -1,0 +1,59 @@
+﻿@model IEnumerable<RoleBasedAuthorizationAssignment.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<button style=" background-color:plum;">
+    <a asp-action="Create" >Create</a>
+</button>
+<table class="table table-bordered" style="border-color:black; background-color:papayawhip;font-weight:bold;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;font-style:italic;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product_Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product_Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product_Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categories.CategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="@item.Product_Image" height="70px" width="70px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categories.CategoryName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
